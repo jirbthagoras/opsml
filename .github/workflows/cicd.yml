@@ -83,4 +83,5 @@ jobs:
           SNS_TOPIC_ARN: ${{ secrets.SNS_TOPIC_ARN }}
           ATHENA_SCHEMA_NAME: ${{ secrets.ATHENA_SCHEMA_NAME }}
         run: |
-          envsubst < ./deployment/deploy.yaml | kubectl apply -f ./deployment/
+          envsubst < ./deployment/deploy.yaml
+          kubectl apply -f ./deployment/ -
