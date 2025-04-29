@@ -67,9 +67,9 @@ jobs:
         run: |
           aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
 
-      # - name: Delete old Kubernetes resources
-      #   run: |
-      #     kubectl delete -f ./deployment/
+      - name: Delete old Kubernetes resources
+        run: |
+          kubectl delete -f ./deployment/
 
       - name: Deploy new version to EKS
         env: 
@@ -83,4 +83,4 @@ jobs:
           SNS_TOPIC_ARN: ${{ secrets.SNS_TOPIC_ARN }}
           ATHENA_SCHEMA_NAME: ${{ secrets.ATHENA_SCHEMA_NAME }}
         run: |
-          kubectl apply -f ./deployment/
+          envsubst < ./deployment/deploy.yaml | kubectl apply -f ./deployment/
