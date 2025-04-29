@@ -10,7 +10,5 @@ templates/index_.html
 
 .github/workflows/deploy.yml
 
-deployment/deploy.yaml
-deployment/service.yaml
 .env
 venv/
